@@ -11,7 +11,6 @@
 
 ### - Register / Login
 ##### - The user can use the forgot password button to receive a password reset email
-![sign_up](https://user-images.githubusercontent.com/56810766/93688210-b46f4c80-fae1-11ea-85b6-9372ae951358.jpg)    ![sign_in](https://user-images.githubusercontent.com/56810766/93688209-b46f4c80-fae1-11ea-9f64-0cc52c0a86fe.jpg)
 
 ### - Vault : All the password cards are shown in the vault
 ![vault](https://user-images.githubusercontent.com/56810766/93688211-b507e300-fae1-11ea-8c1c-24ce9c7a2309.jpg)
