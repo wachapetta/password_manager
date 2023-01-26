@@ -31,6 +31,17 @@ jobs:
         #fatal_warnings: true
       #run: flutter pub run dart_code_metrics:metrics --reporter=github lib
 
+    #- name: Testing app
+     # run: flutter test --coverage
+
+    #- name: Upload coverage to Codecov
+     # uses: codecov/codecov-action@v1
+     # with:
+      #  token: ${{ secrets.CODECOV_TOKEN }}
+      # file: coverage/lcov.info
+
+
+
     - name: Build Web Application 
       run: flutter build web
     
