@@ -221,6 +221,8 @@ class ProviderClass extends ChangeNotifier {
     this._key = appData['key'];
     this._profilePicURL = appData['profilePicURL'];
     notifyListeners();
+
+    developer.log('provider --> getting out');
   }
 
   void startLoadingScreen() {
