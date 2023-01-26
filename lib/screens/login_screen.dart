@@ -131,11 +131,11 @@ class LoginScreen extends StatelessWidget {
                                       else
                                         Functions.showSnackBar(
                                             context, e.message,
-                                            duration: Duration(seconds: 3));
+                                            duration: Duration(seconds: 4));
                                     }
                                   } on AppDataReceiveException catch (e) {
                                     Functions.showSnackBar(context, e.message,
-                                        duration: Duration(seconds: 5));
+                                        duration: Duration(seconds: 4));
                                   } catch (e) {
                                     print("LOGIN EXCEPTION : ${e.message}");
                                   }

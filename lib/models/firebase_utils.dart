@@ -3,10 +3,12 @@ import 'dart:io';
 import 'dart:developer' as developer;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
+import 'package:encryptor/encryptor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:crypto_keys/crypto_keys.dart';
-//import 'package:flutter_string_encryption/flutter_string_encryption.dart';
+import 'dart:convert'; // for the utf8.encode method
+
 import 'package:password_manager/constants.dart';
 import 'package:password_manager/models/exceptions.dart';
 
@@ -16,8 +18,8 @@ class FirebaseUtils {
 
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  //static final PlatformStringCryptor _cryptor = new PlatformStringCryptor();
-  static const int LEVELS_OF_ENCRYPTION = 5;
+
+  //static const int LEVELS_OF_ENCRYPTION = 5;
 
   static final FirebaseStorage _storage = FirebaseStorage.instance;
 
@@ -203,8 +205,11 @@ class FirebaseUtils {
       await user.user.sendEmailVerification();
 
       if (user != null) {
-        //creating a unique key for encrypting passwords for each user
-        final String _key = 'key';
+
+        Digest key = sha256.convert(utf8.encode(password));
+        final String _key = '$key';
+
+        developer.log('key: $_key');
 
         // creating document for new user
         if (profilePicURL == kDefaultProfilePictureURL)
@@ -439,15 +444,12 @@ class FirebaseUtils {
     }
   }
 
-  static Future<String> _encryptPassword(String password, String _key) async {
-    String encrypted;
+   static Future<String> _encryptPassword(String password, String _key) async {
 
-    try {
-      for (int i = 0; i < LEVELS_OF_ENCRYPTION; i++) {
-        //encrypted = await _cryptor.encrypt(password, _key);
-        encrypted = password;
+    try{
+        String encrypted = Encryptor.encrypt(_key, password);
         password = encrypted;
-      }
+
     } catch (e) {
       print("ERROR WHILE ENCRYPTING PASSWORD : $e");
     }
@@ -455,14 +457,12 @@ class FirebaseUtils {
   }
 
   static Future<String> _decryptPassword(String password, String _key) async {
-    String decrypted;
-
     try {
-      for (int i = 0; i < LEVELS_OF_ENCRYPTION; i++) {
-        //decrypted = await _cryptor.decrypt(password, _key);
-        decrypted = password;
-        password = decrypted;
-      }
+
+      String decrypted = Encryptor.decrypt(_key, password);
+
+      password = decrypted;
+
     } catch (e) {
       print("ERROR WHILE DECRYPTING PASSWORD : $e");
     }

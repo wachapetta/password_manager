@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   }
                                 } on RegisterException catch (e) {
                                   Functions.showSnackBar(context, e.message,
-                                      duration: Duration(seconds: 3));
+                                      duration: Duration(seconds: 6));
                                 } catch (e) {
                                   print("REGISTER EXCEPTION : ${e.toString()}");
                                 }

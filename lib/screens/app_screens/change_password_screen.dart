@@ -98,7 +98,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                         "An Error Occurred While Changing Password");
                                 } on ChangePasswordException catch (e) {
                                   Functions.showSnackBar(context, e.message,
-                                      duration: Duration(seconds: 3));
+                                      duration: Duration(seconds: 5));
                                 }
                                 data.stopLoadingScreen();
                               }

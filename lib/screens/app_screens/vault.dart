@@ -10,7 +10,7 @@ import 'package:password_manager/widgets/password_card.dart';
 import 'package:password_manager/widgets/profile_picture.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyVault());
+//void main() => runApp(MyVault());
 
 class MyVault extends StatefulWidget {
   @override

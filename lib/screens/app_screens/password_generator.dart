@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:password_manager/models/functions.dart';
-import 'package:password_manager/models/network_helper.dart';
 import 'package:password_manager/models/provider_class.dart';
 import 'package:password_manager/screens/app_screens/show_generated_passwords.dart';
 import 'package:password_manager/widgets/my_slider_card.dart';
 import 'package:password_manager/widgets/my_switch_card.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(PasswordGenerator());
+
+import 'package:random_password_generator/random_password_generator.dart';
+
+//void main() => runApp(PasswordGenerator());
 
 class PasswordGenerator extends StatefulWidget {
   @override
@@ -15,21 +17,23 @@ class PasswordGenerator extends StatefulWidget {
 }
 
 class _PasswordGeneratorState extends State<PasswordGenerator> {
-  String url;
+  //String url;
   bool upper = true, lower = true, numbers = true, special = true;
   int length = 15, repeat = 10;
 
   String getStringFromBoolean(bool boolean) => boolean ? "on" : "off";
 
   final String _uppercaseLettersSubtitle = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  String _lowercaseLettersSubtitle = "abcdefghijklmnopqrstuvwxyz";
-  String _numbersSubtitle = "0123456789";
+  final String _lowercaseLettersSubtitle = "abcdefghijklmnopqrstuvwxyz";
+  final String _numbersSubtitle = "0123456789";
   final String _specialCharactersSubtitle =
       "( < > ` ! ? @ # \$ % ^ & * ( ) . , _ - )";
 
+  final passwordGen = RandomPasswordGenerator();
+
   @override
   Widget build(BuildContext context) {
-    url = "";
+
     return Consumer<ProviderClass>(
       builder: (context, data, child) {
         return SafeArea(
@@ -113,20 +117,16 @@ class _PasswordGeneratorState extends State<PasswordGenerator> {
                 if (!upper && !lower && !numbers && !special) {
                   Functions.showSnackBar(
                       context, "No Content Is Chosen for the Password !",
-                      duration: Duration(seconds: 2));
+                      duration: Duration(seconds: 4));
                 } else {
-                  url = "https://passwordwolf.com/api/?";
-                  url += "upper=${getStringFromBoolean(upper)}&";
-                  url += "lower=${getStringFromBoolean(lower)}&";
-                  url += "numbers=${getStringFromBoolean(numbers)}&";
-                  url += "special=${getStringFromBoolean(special)}&";
-                  url += "length=$length&";
-                  url += "repeat=$repeat";
 
                   data.startLoadingScreenOnMainAppScreen();
 
-                  List<String> passwordsFromAPI =
-                  await NetworkHelper.getData(url);
+                  List<String> passwordsFromAPI = [];
+
+                  for(int i=0;i< repeat;i++)
+                    passwordsFromAPI.add(passwordGen.randomPassword(letters:lower,uppercase: upper,numbers: numbers, specialChar: special,passwordLength:length.toDouble() ));
+
                   showModalBottomSheet(
                       context: context,
                       builder: (context) =>

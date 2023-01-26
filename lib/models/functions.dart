@@ -10,7 +10,7 @@ class Functions {
     if (text == null) return;
     final snackBar = SnackBar(
         content: Text(text),
-        duration: duration ?? Duration(seconds: 1),
+        duration: duration ?? Duration(seconds: 8),
         action: action);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

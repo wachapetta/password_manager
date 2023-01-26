@@ -16,7 +16,7 @@ import 'package:password_manager/widgets/profile_picture.dart';
 import 'package:password_manager/widgets/settings_card.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(Settings());
+//void main() => runApp(Settings());
 
 // ignore: must_be_immutable
 class Settings extends StatelessWidget {
