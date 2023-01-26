@@ -34,3 +34,4 @@ jobs:
       env:
         FIREBASE_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
         PROJECT_PATH: ./.firebase
+        PROJECT_ID: pwd-manager-90267
