@@ -31,6 +31,7 @@ jobs:
       uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting --public build/web
+        cache: true // 2
       env:
         FIREBASE_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
         PROJECT_ID: pwd-manager-90267
