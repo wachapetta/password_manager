@@ -1,0 +1,34 @@
+name: FirebaseCI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build_web:
+    name: Build Flutter (Web)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: subosito/flutter-action@v1
+      with:
+          channel: 'dev'
+    
+    - name: Get dependencies
+      run: flutter pub get
+      
+    - name: Enable web Configuration
+      run: flutter config --enable-web
+      
+    - name: Build Web Application 
+      run: flutter build web
+    
+    - name: Deploy to Firebase
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting --public build/web
+      env:
+        FIREBASE_TOKEN: ${{AIzaSyAVDTc4TNOXTRgWz-qmW8SEHW7G3O57OHw }}
+        PROJECT_ID: pwd-manager-90267
