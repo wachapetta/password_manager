@@ -25,7 +25,10 @@ jobs:
       run: flutter config --enable-web
 
     - name: Static Analysis by using DCM
-      run: flutter pub run dart_code_metrics:metrics --reporter=github lib
+      uses: dart-code-checker/dart-code-metrics-action@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      #run: flutter pub run dart_code_metrics:metrics --reporter=github lib
 
     - name: Build Web Application 
       run: flutter build web
