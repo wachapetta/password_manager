@@ -32,4 +32,4 @@ jobs:
       with:
         args: deploy --only hosting --public build/web
       env:
-        FIREBASE_TOKEN: ${{1//0hFNFnUnDS0XECgYIARAAGBESNwF-L9IrHg17Lbg1UUKcQO4yT7HGbUIE4cyrf4ofYX99io9PbrODmZ1SH1ApmnJAPxDBCSlcNF4}}
+        FIREBASE_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
