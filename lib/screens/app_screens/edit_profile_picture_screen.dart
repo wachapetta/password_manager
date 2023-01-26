@@ -70,7 +70,7 @@ class _EditProfilePictureScreenState extends State<EditProfilePictureScreen> {
         return ModalProgressHUD(
           inAsyncCall: data.showLoadingScreen,
           progressIndicator: SpinKitChasingDots(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           child: Scaffold(
             body: Padding(

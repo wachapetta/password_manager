@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       builder: (context, data, child) {
         return ModalProgressHUD(
           progressIndicator: SpinKitChasingDots(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           inAsyncCall: data.showLoadingScreen,
           child: SafeArea(

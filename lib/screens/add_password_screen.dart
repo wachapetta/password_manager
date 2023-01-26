@@ -45,7 +45,7 @@ class _AddPasswordScreenState extends State<AddPasswordScreen> {
       builder: (context, data, child) {
         return ModalProgressHUD(
           progressIndicator: SpinKitChasingDots(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           inAsyncCall: data.showLoadingScreen,
           child: Scaffold(

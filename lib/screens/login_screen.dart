@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
       builder: (context, data, child) {
         return ModalProgressHUD(
           progressIndicator: SpinKitChasingDots(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           inAsyncCall: Provider.of<ProviderClass>(context).showLoadingScreen,
           child: SafeArea(

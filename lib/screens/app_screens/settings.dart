@@ -8,11 +8,9 @@ import 'package:password_manager/models/provider_class.dart';
 import 'package:password_manager/screens/app_screens/change_email_screen.dart';
 import 'package:password_manager/screens/app_screens/change_name_screen.dart';
 import 'package:password_manager/screens/app_screens/change_password_screen.dart';
-import 'package:password_manager/screens/app_screens/edit_profile_picture_screen.dart';
 import 'package:password_manager/screens/register_screen.dart';
 import 'package:password_manager/widgets/my_alert_dialog.dart';
 import 'package:password_manager/widgets/my_text_field.dart';
-import 'package:password_manager/widgets/profile_picture.dart';
 import 'package:password_manager/widgets/settings_card.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +33,7 @@ class Settings extends StatelessWidget {
             body: (data.name == null)
                 ? Center(
                     child: SpinKitChasingDots(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   )
                 : Column(

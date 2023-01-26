@@ -38,7 +38,7 @@ class _AppScreenState extends State<AppScreen> {
       },
       child: ModalProgressHUD(
         progressIndicator: SpinKitChasingDots(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         inAsyncCall: Provider.of<ProviderClass>(context)
             .showLoadingScreenOnMainAppScreen,

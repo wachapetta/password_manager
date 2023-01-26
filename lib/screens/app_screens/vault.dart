@@ -7,7 +7,6 @@ import 'package:password_manager/models/provider_class.dart';
 import 'package:password_manager/screens/edit_password_screen.dart';
 import 'package:password_manager/widgets/my_alert_dialog.dart';
 import 'package:password_manager/widgets/password_card.dart';
-import 'package:password_manager/widgets/profile_picture.dart';
 import 'package:provider/provider.dart';
 
 //void main() => runApp(MyVault());

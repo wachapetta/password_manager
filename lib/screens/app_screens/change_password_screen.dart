@@ -23,7 +23,7 @@ class ChangePasswordScreen extends StatelessWidget {
     return ModalProgressHUD(
       inAsyncCall: Provider.of<ProviderClass>(context).showLoadingScreen,
       progressIndicator: SpinKitChasingDots(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
       ),
       child: Consumer<ProviderClass>(
         builder: (context, data, child) {

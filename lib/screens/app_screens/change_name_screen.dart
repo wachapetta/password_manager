@@ -17,7 +17,7 @@ class ChangeNameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ModalProgressHUD(
       progressIndicator: SpinKitChasingDots(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
       ),
       inAsyncCall: Provider.of<ProviderClass>(context).showLoadingScreen,
       child: Consumer<ProviderClass>(

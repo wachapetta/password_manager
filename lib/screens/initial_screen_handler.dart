@@ -43,7 +43,7 @@ class _InitialScreenHandlerState extends State<InitialScreenHandler> {
             color: Colors.tealAccent,
           ),
           SpinKitChasingDots(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ],
       ),
