@@ -11,7 +11,7 @@ jobs:
     name: Build Flutter (Web)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v2
       with:
           flutter-version: "3.0.0"
@@ -33,3 +33,4 @@ jobs:
         args: deploy --only hosting --public build/web
       env:
         FIREBASE_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
+        PROJECT_PATH: ./.firebase
