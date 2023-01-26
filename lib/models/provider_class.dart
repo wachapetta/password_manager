@@ -8,6 +8,8 @@ import 'package:password_manager/models/exceptions.dart';
 import 'package:password_manager/models/firebase_utils.dart';
 import 'package:password_manager/models/functions.dart';
 
+import 'dart:developer' as developer;
+
 class ProviderClass extends ChangeNotifier {
   String _name, _key, _profilePicURL;
   bool _showLoadingScreen = false; // used for inAsyncCall
@@ -209,6 +211,7 @@ class ProviderClass extends ChangeNotifier {
   }
 
   Future<void> getAppData() async {
+    developer.log('provider --> getting appData');
     this.setSearchController();
     final Map<String, dynamic> appData =
     await FirebaseUtils.getAppData(_loggedInUser);
