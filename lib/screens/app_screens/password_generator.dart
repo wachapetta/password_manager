@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:password_manager/models/functions.dart';
 import 'package:password_manager/models/provider_class.dart';
@@ -5,9 +7,12 @@ import 'package:password_manager/screens/app_screens/show_generated_passwords.da
 import 'package:password_manager/widgets/my_slider_card.dart';
 import 'package:password_manager/widgets/my_switch_card.dart';
 import 'package:provider/provider.dart';
+import 'dart:developer' as developer;
 
 
 import 'package:random_password_generator/random_password_generator.dart';
+
+import '../../models/network_helper.dart';
 
 //void main() => runApp(PasswordGenerator());
 
@@ -121,12 +126,33 @@ class _PasswordGeneratorState extends State<PasswordGenerator> {
                 } else {
 
                   data.startLoadingScreenOnMainAppScreen();
-
+                  bool gettinglocally = Random().nextBool();
                   List<String> passwordsFromAPI = [];
 
-                  for(int i=0;i< repeat;i++)
-                    passwordsFromAPI.add(passwordGen.randomPassword(letters:lower,uppercase: upper,numbers: numbers, specialChar: special,passwordLength:length.toDouble() ));
-
+                  if(gettinglocally) {
+                    for (int i = 0; i < repeat; i++)
+                      passwordsFromAPI.add(passwordGen.randomPassword(
+                          letters: lower,
+                          uppercase: upper,
+                          numbers: numbers,
+                          specialChar: special,
+                          passwordLength: length.toDouble()));
+                    developer.log('locally generated passwd(s)');
+                  }
+                  else{
+                    Map<String, String> params = {
+                      'upper': getStringFromBoolean(upper),
+                      'lower': getStringFromBoolean(lower),
+                      'numbers':getStringFromBoolean(numbers),
+                      'special':getStringFromBoolean(special),
+                      'length': length.toString(),
+                      'repeat': repeat.toString()
+                    };
+                    //String paramStr = '?upper=${params['upper']}&lower=${params['lower']}&numbers=${params['numbers']}&special=${params['special']}&length=${params['length']}&repeat=${params['repeat']}';
+                    passwordsFromAPI =
+                    await NetworkHelper.getData('passwordwolf.com','/api/',params);
+                    developer.log('distributed generated passwd(s)');
+                  }
                   showModalBottomSheet(
                       context: context,
                       builder: (context) =>
