@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:password_manager/models/functions.dart';
@@ -126,10 +125,10 @@ class _PasswordGeneratorState extends State<PasswordGenerator> {
                 } else {
 
                   data.startLoadingScreenOnMainAppScreen();
-                  bool gettinglocally = Random().nextBool();
+                  bool localGeneration = true;//Random().nextBool();
                   List<String> passwordsFromAPI = [];
 
-                  if(gettinglocally) {
+                  if(localGeneration) {
                     for (int i = 0; i < repeat; i++)
                       passwordsFromAPI.add(passwordGen.randomPassword(
                           letters: lower,
