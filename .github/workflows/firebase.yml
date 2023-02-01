@@ -24,10 +24,6 @@ jobs:
     - name: Enable web Configuration
       run: flutter config --enable-web
 
-    - run: dart pub global activate flutter_cors
-
-    - run: fluttercors --disable
-
     - name: Static Analysis by using DCM
       uses: dart-code-checker/dart-code-metrics-action@v2
       with:
