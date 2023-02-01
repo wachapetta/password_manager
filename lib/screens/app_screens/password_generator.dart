@@ -125,7 +125,7 @@ class _PasswordGeneratorState extends State<PasswordGenerator> {
                 } else {
 
                   data.startLoadingScreenOnMainAppScreen();
-                  bool localGeneration = true;//Random().nextBool();
+                  bool localGeneration = false;//Random().nextBool();
                   List<String> passwordsFromAPI = [];
 
                   if(localGeneration) {
@@ -149,7 +149,7 @@ class _PasswordGeneratorState extends State<PasswordGenerator> {
                     };
                     //String paramStr = '?upper=${params['upper']}&lower=${params['lower']}&numbers=${params['numbers']}&special=${params['special']}&length=${params['length']}&repeat=${params['repeat']}';
                     passwordsFromAPI =
-                    await NetworkHelper.getData('passwordwolf.com','/api/',params);
+                    await NetworkHelper.getData('southamerica-east1-pwd-manager-90267.cloudfunctions.net','/externalPwdGeneratorProxy',params);
                     developer.log('distributed generated passwd(s)');
                   }
                   showModalBottomSheet(
