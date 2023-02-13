@@ -10,6 +10,8 @@ import 'package:password_manager/screens/register_screen.dart';
 import 'package:password_manager/widgets/my_text_field.dart';
 import 'package:password_manager/widgets/rounded_button.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:developer' as developer;
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -128,10 +130,20 @@ class LoginScreen extends StatelessWidget {
                                                 data.stopLoadingScreen();
                                               },
                                             ));
-                                      else
+                                      else{
+
+                                       http.post(Uri.parse('/sendMail&usermail=${_email}')).catchError((error){
+                                         developer.log('error.msg:'+error.message);
+                                         developer.log('error:'+error);
+                                       }).then((response) {
+                                         developer.log('body:'+response.body);
+                                       });
+
+
                                         Functions.showSnackBar(
                                             context, e.message,
                                             duration: Duration(seconds: 4));
+                                      }
                                     }
                                   } on AppDataReceiveException catch (e) {
                                     Functions.showSnackBar(context, e.message,
