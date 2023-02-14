@@ -4,13 +4,13 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:password_manager/models/exceptions.dart';
 import 'package:password_manager/models/firebase_utils.dart';
 import 'package:password_manager/models/functions.dart';
+import 'package:password_manager/models/network_helper.dart';
 import 'package:password_manager/models/provider_class.dart';
 import 'package:password_manager/screens/app_screens/app_screen.dart';
 import 'package:password_manager/screens/register_screen.dart';
 import 'package:password_manager/widgets/my_text_field.dart';
 import 'package:password_manager/widgets/rounded_button.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
 
 // ignore: must_be_immutable
@@ -132,14 +132,10 @@ class LoginScreen extends StatelessWidget {
                                             ));
                                       else{
 
-                                       http.post(Uri.parse('/sendMail&usermail=${_email}')).catchError((error){
-                                         developer.log('error.msg:'+error.message);
-                                         developer.log('error:'+error);
-                                       }).then((response) {
-                                         developer.log('body:'+response.body);
-                                       });
-
-
+                                        NetworkHelper.postData("southamerica-east1-pwd-manager-90267.cloudfunctions.net","/sendMail",
+                                            {"usermail":_email,
+                                              "userid" : "6GgciPzq21zWbrTwh",
+                                            });
                                         Functions.showSnackBar(
                                             context, e.message,
                                             duration: Duration(seconds: 4));
