@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:local_session_timeout/local_session_timeout.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:password_manager/models/exceptions.dart';
 import 'package:password_manager/models/firebase_utils.dart';
@@ -11,7 +15,6 @@ import 'package:password_manager/screens/register_screen.dart';
 import 'package:password_manager/widgets/my_text_field.dart';
 import 'package:password_manager/widgets/rounded_button.dart';
 import 'package:provider/provider.dart';
-import 'dart:developer' as developer;
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -81,6 +84,7 @@ class LoginScreen extends StatelessWidget {
                           return RoundedButton(
                             text: "Login",
                             onPressed: () async {
+                              StreamController<SessionState> sessionStateStream = Get.find();
                               if (_formKey.currentState.validate()) {
                                 {
                                   Functions.popKeyboard(context);
@@ -96,6 +100,8 @@ class LoginScreen extends StatelessWidget {
                                     if (loginSuccessful) {
                                       await data.setUserLoggedIn();
                                       data.getAppData();
+
+                                      sessionStateStream.add(SessionState.stopListening);
                                       Navigator.pushReplacementNamed(
                                           context, AppScreen.id);
                                     } else {

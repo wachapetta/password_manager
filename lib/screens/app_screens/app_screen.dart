@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:local_session_timeout/local_session_timeout.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:password_manager/constants.dart';
 import 'package:password_manager/models/firebase_utils.dart';
@@ -67,7 +71,9 @@ class _AppScreenState extends State<AppScreen> {
                       ? IconButton(
                     icon: Icon(Icons.exit_to_app),
                     onPressed: () async {
+                      StreamController<SessionState> sessionStateStream = Get.find();
                       await FirebaseUtils.logoutUser();
+                      sessionStateStream.add(SessionState.stopListening);
                       Provider.of<ProviderClass>(context, listen: false)
                           .setDataToNull();
                       Navigator.pushReplacementNamed(
