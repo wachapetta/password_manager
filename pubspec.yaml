@@ -27,7 +27,7 @@ dependencies:
   random_password_generator: ^0.2.1
   encryptor: ^0.0.1
   crypto: ^3.0.2
-  local_session_timeout: 2.2.0
+  local_session_timeout: 2.1.2
   get: ^4.6.5
 dev_dependencies:
   flutter_test:
