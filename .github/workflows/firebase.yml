@@ -23,7 +23,16 @@ jobs:
     
     - name: Get dependencies
       run: flutter pub get
-      
+
+    - name: Disable Windows Configuration
+      run: flutter config --no-enable-windows-desktop
+
+    - name: Disable Linux Configuration
+        run: flutter config --no-enable-linux-desktop
+
+    - name: Disable MacOS Configuration
+        run: flutter config --no-enable-macos-desktop
+
     - name: Enable web Configuration
       run: flutter config --enable-web
 
